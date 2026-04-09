@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-import requests
+
+RED = "\33[31m"
+RESET = "\33[0m"
+
+try:
+    import requests
+except ImportError:
+    print(f"{RED}'requests' module not found, please install it.")
 
 def get_public_ip():
     try:
