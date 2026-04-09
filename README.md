@@ -17,6 +17,14 @@ A minimal command-line tool to fetch your public IP address and display geolocat
 pip install requests
 ```
 
+## Install
+
+```bash
+git clone --depth=1 https://github.com/LUCKYS1NGHH/ipc.git
+cd ipc
+sudo mv ipc /usr/local/bin
+```
+
 ## Usage
 
 ```bash
