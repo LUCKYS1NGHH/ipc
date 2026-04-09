@@ -1,0 +1,64 @@
+#!/usr/bin/env python3
+import requests
+
+def get_public_ip():
+    try:
+        # Getting the public IP using httpbin.org
+        response = requests.get('https://httpbin.org/ip')
+        data = response.json()
+        return data['origin']
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching public IP: {e}")
+        return None
+
+def get_ip_info(ip):
+    try:
+        # Sending request to ipinfo.io to get details about the IP
+        url = f"https://ipinfo.io/{ip}/json"
+        response = requests.get(url)
+        data = response.json()
+
+        # Extracting information from the response
+        ip_address = data.get('ip', 'N/A')
+        hostname = data.get('hostname', 'N/A')
+        city = data.get('city', 'N/A')
+        region = data.get('region', 'N/A')
+        country = data.get('country', 'N/A')
+        loc = data.get('loc', 'N/A')  # Latitude and longitude
+        org = data.get('org', 'N/A')
+
+        # Displaying the information
+        print(f"IP Address: {ip_address}")
+        print(f"Hostname: {hostname}")
+        print(f"City: {city}")
+        print(f"Region: {region}")
+        print(f"Country: {country}")
+        print(f"Location: {loc}")
+        print(f"Organization: {org}")
+
+        return {
+         "IP Address": ip_address,
+         "Hostname": hostname,
+         "City": city,
+         "Region": region,
+         "Country": country,
+         "Location": loc,
+         "Organization": org}
+
+    except Exception as e:
+        print(f"Error: {e}")
+
+def main():
+    print("Welcome to the IP Looker!")
+
+    # Get the public IP of the user
+    public_ip = get_public_ip()
+    if public_ip:
+        print(f"Your Public IP Address: {public_ip}")
+        # Get and display details for the public IP
+        get_ip_info(public_ip)
+    else:
+        print("Could not fetch public IP.")
+
+if __name__ == "__main__":
+    main()
