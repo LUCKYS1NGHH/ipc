@@ -49,4 +49,3 @@ Organization: AS12345 Some ISP Ltd.
 
 - No API key required for basic usage (ipinfo.io free tier: 50k requests/month)
 - Does not support lookup of arbitrary IPs — it only checks your own public IP
-- Output is printed to stdout; the function also returns a dict if you want to use it programmatically
